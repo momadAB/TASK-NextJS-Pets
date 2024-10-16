@@ -19,8 +19,10 @@ function PetItem({ pet, adoptedPets, setAdoptedPets }) {
   }
 
   function adoptPet() {
-    setAdoptedPets([...adoptedPets, pet.name]);
-    console.log(adoptedPets, [...adoptedPets, pet.name]);
+    if (window.confirm(`Are you sure you want to adopt ${pet.name}?`)) {
+      setAdoptedPets([...adoptedPets, pet.name]);
+      // console.log(adoptedPets, [...adoptedPets, pet.name]);
+    }
   }
 
   return (
