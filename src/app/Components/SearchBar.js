@@ -1,43 +1,42 @@
 import React from "react";
 import { useState } from "react";
 import PetItem from "./PetItem";
+import filterPetsList from "./filterPetsList";
 
-function SearchBar({ pets, setPetList }) {
-  const [query, setQuery] = useState("");
-  const [type, setType] = useState("");
-
-  function filterPetsList(query, type) {
-    if (type !== "") {
-      setPetList(
-        pets
-          // Filters petList to the type and name, no adopted pets
-          .filter((pet) => {
-            return pet.type === type && pet.name.toLowerCase().includes(query);
-          })
-          .map((pet) => <PetItem pet={pet} key={pet.id} />)
-      );
-    } else {
-      setPetList(
-        pets
-          // Filters petList to the name only, no adopted pets
-          .filter((pet) => {
-            return pet.name.toLowerCase().includes(query);
-          })
-          .map((pet) => <PetItem pet={pet} key={pet.id} />)
-      );
-    }
-  }
-
+function SearchBar({
+  pets,
+  setPetList,
+  adoptedPets,
+  setAdoptedPets,
+  query,
+  setQuery,
+  type,
+  setType,
+}) {
   function handleQuery(e) {
     setQuery(e.target.value);
 
-    filterPetsList(e.target.value, type);
+    filterPetsList(
+      pets,
+      e.target.value,
+      type,
+      adoptedPets,
+      setAdoptedPets,
+      setPetList
+    );
   }
 
   function handleType(e) {
     setType(e.target.value);
 
-    filterPetsList(query, e.target.value);
+    filterPetsList(
+      pets,
+      query,
+      e.target.value,
+      adoptedPets,
+      setAdoptedPets,
+      setPetList
+    );
   }
 
   return (

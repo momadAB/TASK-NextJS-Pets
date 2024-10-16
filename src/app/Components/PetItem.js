@@ -6,7 +6,7 @@ import { useState } from "react";
 const btnStyle =
   "m-4 p-2 bg-palette-primary text-white rounded-sm font-primary font-semibold  hover:bg-palette-dark";
 
-function PetItem({ pet, adoptedPets, setAdoptedPets, setPetList }) {
+function PetItem({ pet, adoptedPets, setAdoptedPets }) {
   const [image, setImage] = useState(pet.image);
 
   console.log(adoptedPets);
